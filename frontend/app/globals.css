@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+/*
+  Design tokens for the Fireflies clone.
+
+  Fireflies' real product uses a near-black sidebar with a vivid
+  blue-violet accent for primary actions, and a clean white/light-gray
+  content area for the actual library + transcript content. We mirror
+  that exact relationship here:
+
+    --sidebar       : near-black, used ONLY for the left navigation rail
+    --accent        : blue-violet, used for primary buttons, active states,
+                       links, the logo mark, and the audio player progress bar
+    --surface        : the main content background (white in light mode,
+                       deep slate in dark mode)
+    --surface-raised : cards / panels that sit slightly "above" the surface
+
+  Dark mode is implemented via a `.dark` class on <html> (toggled by
+  ThemeToggle.tsx) rather than only `prefers-color-scheme`, so the user can
+  explicitly choose it -- this is what the bonus "dark mode" feature means
+  in practice.
+*/
+
+:root {
+  --sidebar: #15131f;
+  --sidebar-foreground: #cbc7da;
+  --sidebar-active: #221f33;
+
+  --accent: #5b4fe6;
+  --accent-hover: #4c3fd6;
+  --accent-soft: #efebff;
+
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --surface-sunken: #f7f7fb;
+  --border: #e7e6ef;
+
+  --foreground: #1b1a23;
+  --foreground-muted: #6b6878;
+
+  --success: #1f9d6c;
+  --success-soft: #e7f8ef;
+  --warning: #e8912a;
+  --warning-soft: #fdf1e2;
+  --danger: #e0454f;
+  --danger-soft: #fcebec;
+
+  --highlight: #ffe27a;
+}
+
+.dark {
+  --sidebar: #0d0c14;
+  --sidebar-foreground: #b6b2c8;
+  --sidebar-active: #1c1a2b;
+
+  --accent: #8b80ff;
+  --accent-hover: #9d94ff;
+  --accent-soft: #2a2650;
+
+  --surface: #131220;
+  --surface-raised: #1a1828;
+  --surface-sunken: #0f0e19;
+  --border: #2a2840;
+
+  --foreground: #efeef7;
+  --foreground-muted: #9591a8;
+
+  --success: #3fcf8e;
+  --success-soft: #133a29;
+  --warning: #f0a94a;
+  --warning-soft: #3a2a10;
+  --danger: #f0717a;
+  --danger-soft: #3a1517;
+
+  --highlight: #4a3f10;
+}
+
+@theme inline {
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-active: var(--sidebar-active);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-border: var(--border);
+
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+
+  --color-highlight: var(--highlight);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--surface-sunken);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Visible keyboard focus ring everywhere, including dark mode */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Thin custom scrollbar for transcript/summary panels */
+.thin-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,7 @@
+fastapi==0.138.1
+uvicorn[standard]==0.49.0
+sqlalchemy==2.0.51
+pydantic==2.13.4
+python-multipart==0.0.32
+python-dotenv==1.1.1
+groq==1.5.0
